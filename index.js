@@ -9,31 +9,33 @@ class Tabuleiro {
                 this.tabuleiro[linha][coluna] = new Casa(linha, coluna);
             }
         }
-        console.log(this.tabuleiro);
 
+        console.log(this.tabuleiro);
         this.selecionada = null;
     }
 
     colocarPeca(peca, linha, coluna) {
         const casa = this.tabuleiro[linha][coluna];
-        casa.setPeca(peca);
+        casa.peca = peca;
+        casa.elementoHtml.innerHTML = peca.simbolo;
     }
 
     clicarCasa(casa) {
-        if (this.selecionada && this.selecionada.peca) {
-            const peca = this.selecionada.peca;
-
-            // Verificar se a casa selecionada não tem uma peça da mesma cor
-            if (!casa.peca || casa.peca.cor !== peca.cor) {
-                casa.setPeca(peca);  // Coloca a peça na nova casa
-                this.selecionada.setPeca(null);  // Limpa a casa de origem
-                this.selecionada.elementoHtml.classList.remove('selecionada');  // Remove a seleção visual
-                this.selecionada = null;  // Reseta a seleção
+        if (this.selecionada) {
+            // Se já há uma peça selecionada
+            const pecaSelecionada = this.selecionada.peca;
+            // Se a casa clicada não tem uma peça, ou tem uma peça do adversário, movemos a peça
+            if (!casa.peca || casa.peca.cor !== pecaSelecionada.cor) {
+                casa.setPeca(pecaSelecionada);  // Coloca a peça na nova casa
+                this.selecionada.setPeca(null); // Remove a peça da casa anterior
+                this.selecionada = null;        // Desmarcar a peça selecionada
+            } else {
+                // Se a casa já tem uma peça da mesma cor, desmarcamos a seleção
+                this.selecionada = null;
             }
         } else if (casa.peca) {
-            // Se a casa clicada contém uma peça, marque-a como selecionada
+            // Se não houver uma peça selecionada, seleciona a peça da casa clicada
             this.selecionada = casa;
-            casa.elementoHtml.classList.add('selecionada');  // Destaca a casa selecionada
         }
     }
 }
@@ -61,11 +63,7 @@ class Casa {
 
     setPeca(peca) {
         this.peca = peca;
-        this.elementoHtml.innerHTML = peca ? peca.simbolo : '';  // Atualiza o HTML da casa
-        if (peca) {
-            peca.linha = this.linha;  // Atualiza a linha da peça
-            peca.coluna = this.coluna;  // Atualiza a coluna da peça
-        }
+        this.elementoHtml.innerHTML = peca ? peca.simbolo : '';  // Atualiza a casa com o símbolo da peça
     }
 }
 
@@ -148,5 +146,4 @@ const pecasPretas = [
 ];
 
 // Colocar as peças brancas e pretas no tabuleiro
-pecasBrancas.forEach(peca => tabuleiro.colocarPeca(peca, peca.linha, peca.coluna));
-pecasPretas.forEach(peca => tabuleiro.colocarPeca(peca, peca.linha, peca.coluna));
+pecasBrancas.forEach(peca => tabuleiro.colocarPeca(peca, p
