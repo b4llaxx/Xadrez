@@ -16,18 +16,24 @@ class Tabuleiro {
 
     colocarPeca(peca, linha, coluna) {
         const casa = this.tabuleiro[linha][coluna];
-        casa.peca = peca;
-        casa.elementoHtml.innerHTML = peca.simbolo;
+        casa.setPeca(peca);
     }
 
     clicarCasa(casa) {
         if (this.selecionada && this.selecionada.peca) {
             const peca = this.selecionada.peca;
-            casa.setPeca(peca);
-            this.selecionada.setPeca(null);
-            this.selecionada = null;
-        }else if (casa.peca) {
+
+            // Verificar se a casa selecionada não tem uma peça da mesma cor
+            if (!casa.peca || casa.peca.cor !== peca.cor) {
+                casa.setPeca(peca);  // Coloca a peça na nova casa
+                this.selecionada.setPeca(null);  // Limpa a casa de origem
+                this.selecionada.elementoHtml.classList.remove('selecionada');  // Remove a seleção visual
+                this.selecionada = null;  // Reseta a seleção
+            }
+        } else if (casa.peca) {
+            // Se a casa clicada contém uma peça, marque-a como selecionada
             this.selecionada = casa;
+            casa.elementoHtml.classList.add('selecionada');  // Destaca a casa selecionada
         }
     }
 }
@@ -50,12 +56,16 @@ class Casa {
 
         this.elementoHtml.addEventListener('click', () => {
             tabuleiro.clicarCasa(this);
-        })
+        });
     }
 
     setPeca(peca) {
         this.peca = peca;
-        this.elementoHtml.innerHTML = peca ? peca.simbolo : '';
+        this.elementoHtml.innerHTML = peca ? peca.simbolo : '';  // Atualiza o HTML da casa
+        if (peca) {
+            peca.linha = this.linha;  // Atualiza a linha da peça
+            peca.coluna = this.coluna;  // Atualiza a coluna da peça
+        }
     }
 }
 
@@ -128,7 +138,6 @@ const pecasBrancas = [
     new Torre('branca', 0, 0), new Torre('branca', 0, 7), new Cavalo('branca', 0, 1), new Cavalo('branca', 0, 6),
     new Bispo('branca', 0, 2), new Bispo('branca', 0, 5), new Rainha('branca', 0, 3), new Rei('branca', 0, 4)
 ];
-
 
 // Peças Pretas
 const pecasPretas = [
