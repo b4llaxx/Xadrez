@@ -1,59 +1,78 @@
+/* Corpo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fce7f3; /* Cor de fundo suave e feminina */
+    font-family: 'Verdana', sans-serif; /* Fonte mais leve e moderna */
+}
+
 /* Tabuleiro */
 #tabuleiro {
     display: grid;
-    grid-template-columns: repeat(8, 1fr); /* Definindo 8 colunas de tamanhos iguais */
-    grid-template-rows: repeat(8, 1fr); /* Definindo 8 linhas de tamanhos iguais */
-    max-width: 500px; /* Largura máxima ajustada */
-    max-height: 500px; /* Altura máxima ajustada */
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    max-width: 400px;
+    max-height: 400px;
     margin: 0 auto;
-    border-radius: 20px; /* Bordas arredondadas para dar um visual mais suave */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra mais suave e sutil */
-    background-color: #f8f0f8; /* Fundo suave de lavanda para o tabuleiro */
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra suave e delicada */
+    background-color: #ffffff; /* Fundo branco para o tabuleiro */
 }
 
 /* Casas do tabuleiro */
 .casa {
     width: 100%;
     height: 100%;
-    border: 1px solid #f5c6cb; /* Borda com cor suave e feminina */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 32px; /* Aumentando o tamanho das peças para um visual mais claro */
-    font-family: 'Arial', sans-serif; /* Fonte suave e legível */
-    box-sizing: border-box;
-    transition: transform 0.2s ease-in-out, background-color 0.3s ease; /* Efeito de transição suave ao passar o mouse */
+    font-size: 2rem;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.2s ease-in-out; /* Efeito de transição suave */
+    border-radius: 5px; /* Bordas arredondadas nas casas */
 }
 
+/* Efeito ao passar o mouse sobre a casa */
 .casa:hover {
-    transform: scale(1.05); /* Aumenta o zoom da casa suavemente ao passar o mouse */
-    background-color: #fce7f3; /* Mudança suave de cor no hover para indicar interatividade */
+    transform: scale(1.1); /* Aumento suave ao passar o mouse */
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.5); /* Sombra suave ao passar o mouse */
 }
 
-/* Estilos das casas claras e escuras */
+/* Casas claras */
 .clara {
-    background-color: #f8e1e7; /* Cor suave para as casas claras */
+    background-color: #f8d0d8; /* Rosa suave para as casas claras */
 }
 
+/* Casas escuras */
 .escura {
-    background-color: #f2b6b7; /* Cor suave para as casas escuras */
+    background-color: #f4b0b5; /* Rosa claro para as casas escuras */
 }
 
-/* Estilo para as peças */
+/* Peças */
 .peca {
-    color: #ff4c98; /* Cor suave e fofa para as peças */
-    font-size: 38px; /* Tamanho das peças ajustado */
-    font-weight: bold; /* Para dar mais destaque às peças */
-    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease; /* Transição suave para transformações e brilhos */
-    display: inline-block;
+    color: #ff69b4; /* Cor fofa para as peças (rosa claro) */
+    font-size: 36px; /* Tamanho maior para as peças */
+    transition: transform 0.3s ease-in-out;
 }
 
-/* Efeito de brilho quando a peça é selecionada */
+/* Peças selecionadas */
 .peca.selecionada {
-    text-shadow: 0 0 8px rgba(255, 76, 152, 0.7); /* Efeito de brilho suave nas peças selecionadas */
+    text-shadow: 0 0 8px rgba(255, 105, 180, 0.7); /* Efeito de brilho suave nas peças selecionadas */
 }
 
-/* Quando uma peça é movida, o efeito de transformação é mantido */
-.peca.moving {
-    transform: scale(1.2) rotate(5deg); /* Leve efeito de aumento e rotação para movimentação de peças */
+/* Bordas para as peças */
+.peca {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 50%; /* Bordas arredondadas nas peças */
+    transition: transform 0.3s ease;
+}
+
+/* Adicionando estilo para o tabuleiro de jogo */
+#tabuleiro {
+    background-color: #fffcfc; /* Fundo mais suave para o tabuleiro */
 }
