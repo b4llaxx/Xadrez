@@ -71,8 +71,3 @@ body {
     border-radius: 50%; /* Bordas arredondadas nas peças */
     transition: transform 0.3s ease;
 }
-
-/* Adicionando estilo para o tabuleiro de jogo */
-#tabuleiro {
-    background-color: #fffcfc; /* Fundo mais suave para o tabuleiro */
-}

@@ -8,45 +8,25 @@ class Tabuleiro {
                 this.tabuleiro[linha][coluna] = new Casa(linha, coluna);
             }
         }
-        this.selecionada = null; // Variável para armazenar a peça selecionada
+        this.selecionada = null;
     }
 
     colocarPeca(peca, linha, coluna) {
         const casa = this.tabuleiro[linha][coluna];
         casa.peca = peca;
         casa.elementoHtml.innerHTML = peca.simbolo;
-        casa.elementoHtml.classList.add("peca"); // Adiciona a classe "peca" para o estilo
+        casa.elementoHtml.classList.add("peca");
     }
 
     clicarCasa(casa) {
         if (this.selecionada && this.selecionada.peca) {
             const peca = this.selecionada.peca;
-            if (this.selecionada !== casa) {
-                // Mover a peça para a nova casa
-                this.moverPeca(peca, casa);
-            }
-            // Desmarcar a peça selecionada
-            this.selecionada.elementoHtml.classList.remove("selecionada");
+            casa.setPeca(peca);
+            this.selecionada.setPeca(null);
             this.selecionada = null;
         } else if (casa.peca) {
-            // Selecionar a peça
             this.selecionada = casa;
-            casa.elementoHtml.classList.add("selecionada");
         }
-    }
-
-    moverPeca(peca, novaCasa) {
-        // Remove a peça da casa antiga
-        const casaAntiga = this.tabuleiro[peca.linha][peca.coluna];
-        casaAntiga.peca = null;
-        casaAntiga.elementoHtml.innerHTML = "";
-
-        // Atualiza a posição da peça
-        peca.moverPara(novaCasa.linha, novaCasa.coluna);
-
-        // Coloca a peça na nova casa
-        novaCasa.peca = peca;
-        novaCasa.elementoHtml.innerHTML = peca.simbolo;
     }
 }
 
@@ -58,14 +38,14 @@ class Casa {
 
         this.elementoHtml = document.createElement('div');
         this.elementoHtml.classList.add('casa');
-        if ((linha + coluna) % 2 == 0) {
+        if ((linha + coluna) % 2 === 0) {
             this.elementoHtml.classList.add('clara');
         } else {
             this.elementoHtml.classList.add('escura');
         }
+
         document.getElementById('tabuleiro').appendChild(this.elementoHtml);
 
-        // Adiciona o evento de clique nas casas
         this.elementoHtml.addEventListener('click', () => {
             tabuleiro.clicarCasa(this);
         });
@@ -139,7 +119,7 @@ class Rainha extends Peca {
 
 const tabuleiro = new Tabuleiro();
 
-// Coloca as peças brancas e pretas no tabuleiro
+// Colocar peças brancas e pretas no tabuleiro
 const pecasBrancas = [
     new Peao('branca', 1, 0), new Peao('branca', 1, 1), new Peao('branca', 1, 2), new Peao('branca', 1, 3),
     new Peao('branca', 1, 4), new Peao('branca', 1, 5), new Peao('branca', 1, 6), new Peao('branca', 1, 7),
@@ -149,11 +129,4 @@ const pecasBrancas = [
 
 const pecasPretas = [
     new Peao('preta', 6, 0), new Peao('preta', 6, 1), new Peao('preta', 6, 2), new Peao('preta', 6, 3),
-    new Peao('preta', 6, 4), new Peao('preta', 6, 5), new Peao('preta', 6, 6), new Peao('preta', 6, 7),
-    new Torre('preta', 7, 0), new Torre('preta', 7, 7), new Cavalo('preta', 7, 1), new Cavalo('preta', 7, 6),
-    new Bispo('preta', 7, 2), new Bispo('preta', 7, 5), new Rainha('preta', 7, 3), new Rei('preta', 7, 4)
-];
-
-// Coloca as peças no tabuleiro
-pecasBrancas.forEach(peca => tabuleiro.colocarPeca(peca, peca.linha, peca.coluna));
-pecasPretas.forEach(peca => tabuleiro.colocarPeca(peca, peca.linha, peca.coluna));
+    new Peao('preta', 6, 4), new Peao('
