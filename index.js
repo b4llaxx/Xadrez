@@ -146,4 +146,5 @@ const pecasPretas = [
 ];
 
 // Colocar as peças brancas e pretas no tabuleiro
-pecasBrancas.forEach(peca => tabuleiro.colocarPeca(peca, p
+pecasBrancas.forEach(peca => tabuleiro.colocarPeca(peca, peca.linha, peca.coluna));
+pecasPretas.forEach(peca => tabuleiro.colocarPeca(peca, peca.linha, peca.coluna));
