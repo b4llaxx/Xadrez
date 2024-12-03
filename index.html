@@ -3,11 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabuleiro de Xadrez</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Jogo de Xadrez</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #tabuleiro {
+            display: grid;
+            grid-template-columns: repeat(8, 50px);
+            grid-template-rows: repeat(8, 50px);
+            gap: 0;
+        }
+
+        .casa {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .clara {
+            background-color: #f0d9b5;
+        }
+
+        .escura {
+            background-color: #b58863;
+        }
+
+        .selecionada {
+            border: 2px solid #ff0000;
+        }
+    </style>
 </head>
 <body>
-    <div id="tabuleiro"></div> <!-- Tabuleiro -->
-    <script src="script.js"></script> <!-- Seu arquivo de script JS -->
+    <div id="tabuleiro"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
