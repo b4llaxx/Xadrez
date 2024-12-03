@@ -1,23 +1,48 @@
 #tabuleiro {
     display: grid;
-    grid-template-columns: repeat(8, 50px);
-    grid-template-rows: repeat(8, 50px);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    max-width: 400px;
+    max-height: 400px;
+    margin: 0 auto;
+    border-radius: 15px; /* Bordas arredondadas para o tabuleiro */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: #f8f0f8; /* Fundo suave para o tabuleiro */
 }
 
 .casa {
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #f5c6cb; /* Borda com cor suave e feminina */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 28px; /* Aumentando o tamanho das peças */
+    font-family: 'Arial', sans-serif; /* Fonte mais suave */
+    box-sizing: border-box;
+    transition: transform 0.2s ease-in-out; /* Efeito de transição */
+}
+
+.casa:hover {
+    transform: scale(1.1); /* Efeito de zoom suave ao passar o mouse */
 }
 
 .clara {
-    background-color: #f0d9b5;
+    background-color: #f8e1e7; /* Cor suave e feminina para casas claras */
 }
 
 .escura {
-    background-color: #b58863;
+    background-color: #f2b6b7; /* Cor suave e feminina para casas escuras */
+}
+
+/* Adicionando uma cor suave para as peças */
+.peca {
+    color: #ff4c98; /* Cor fofa para as peças */
+    font-size: 36px;
+    transition: transform 0.3s ease;
+}
+
+/* Quando a peça é selecionada, ela ganha um efeito de brilho */
+.peca.selecionada {
+    text-shadow: 0 0 8px rgba(255, 76, 152, 0.7); /* Efeito de brilho suave */
 }
