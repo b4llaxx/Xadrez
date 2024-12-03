@@ -129,8 +129,6 @@ const pecasBrancas = [
     new Bispo('branca', 0, 2), new Bispo('branca', 0, 5), new Rainha('branca', 0, 3), new Rei('branca', 0, 4)
 ];
 
-peao1 = new Peao('preta', 6, 0);
-tabuleiro.colocarPeca(peao1,6,0);
 
 // Peças Pretas
 const pecasPretas = [
